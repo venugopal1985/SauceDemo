@@ -29,21 +29,11 @@ import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalUnit;
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
 import static com.google.common.base.Preconditions.checkNotNull;
-//import static java.util.concurrent.TimeUnit.MILLISECONDS;
-//import static java.util.concurrent.TimeUnit.SECONDS;
-
 import java.time.Clock;
 import java.time.Duration;
-//import org.openqa.selenium.support.ui.Clock;
-//import org.openqa.selenium.support.ui.Duration;
-//import org.openqa.selenium.support.ui.Sleeper;
-//import org.openqa.selenium.support.ui.SystemClock;
-//import org.openqa.selenium.support.ui.Wait;
 
 /**
  * An implementation of the {@link Wait} interface that may have its timeout and polling interval
@@ -168,22 +158,6 @@ public class MyFluentWait<T> implements Wait<T>
         return this.ignoreAll(ImmutableList.<Class<? extends Throwable>>of(exceptionType));
     }
 
-    /**
-     * Repeatedly applies this instance's input value to the given function until one of the following
-     * occurs:
-     * <ol>
-     * <li>the function returns neither null nor false</li>
-     * <li>the function throws an unignored exception</li>
-     * <li>the timeout expires</li>
-     * <li>the current thread is interrupted</li>
-     * </ol>
-     *
-     * @param isTrue the parameter to pass to the {@link ExpectedCondition}
-     * @param <V>    The function's expected return type.
-     * @return The function's return value if the function returned something different
-     * from null or false before the timeout expired.
-     * @throws TimeoutException If the timeout expires.
-     */
     @Override
     public <V> V until(Function<? super T, V> isTrue)
     {
@@ -249,15 +223,6 @@ public class MyFluentWait<T> implements Wait<T>
         throw new RuntimeException(e);
     }
 
-    /**
-     * Throws a timeout exception. This method may be overridden to throw an exception that is
-     * idiomatic for a particular test infrastructure, such as an AssertionError in JUnit4.
-     *
-     * @param message       The timeout message.
-     * @param lastException The last exception to be thrown and subsequently suppressed while waiting
-     *                      on a function.
-     * @return Nothing will ever be returned; this return type is only specified as a convenience.
-     */
     protected RuntimeException timeoutException(String message, Throwable lastException)
     {
         throw new TimeoutException(message, lastException);
