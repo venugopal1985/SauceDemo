@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="50" configfailurepolicy="continue">
+
+   <test name="EDGE on Windows 11">
+       <parameter name="browser" value="EDGE"/>
+       <parameter name="version" value="74.0"/>
+       <parameter name="platformName" value="Windows 11"/>
+       <classes>
+           <class name="com.saucedemo.example.DesktopTestRunner"/>
+       </classes>
+   </test>
+
+<test name="Chrome on Windows 11">
+       <parameter name="browser" value="CHROME"/>
+       <parameter name="version" value="74.0"/>
+       <parameter name="platformName" value="Windows 11"/>
+       <classes>
+           <class name="com.saucedemo.example.DesktopTestRunner"/>
+       </classes>
+   </test>
+
+</suite>
