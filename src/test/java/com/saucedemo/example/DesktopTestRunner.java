@@ -10,7 +10,7 @@ import gherkin.pickles.Pickle;
 import io.cucumber.junit.Cucumber;
 import org.junit.runner.RunWith;
 import org.testng.annotations.*;
-import org.junit.runner.RunWith;
+
 @RunWith(Cucumber.class)
 // @formatter:off
 @CucumberOptions(
@@ -40,7 +40,6 @@ public class DesktopTestRunner
         {
             return;
         }
-
         testNGCucumberRunner.finish();
     }
 

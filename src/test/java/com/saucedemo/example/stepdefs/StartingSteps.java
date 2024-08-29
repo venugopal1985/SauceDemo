@@ -14,7 +14,8 @@ import java.util.Date;
 
 public class StartingSteps extends DriverFactory implements En
 {
-    private RemoteWebDriver driver;
+    private RemoteWebDriver edgedriver;
+    private RemoteWebDriver chromedriver;
     private Date startDate, stopDate;
 
     public StartingSteps()
@@ -25,19 +26,19 @@ public class StartingSteps extends DriverFactory implements En
 
                 TestPlatform.Builder builder = new TestPlatform.Builder();
             // @formatter:off
-            driver = DriverFactory.getDriverInstance(builder
+            edgedriver = DriverFactory.getDriverInstance(builder
                     .browser(Browser.EDGE)
                     .browserVersion("latest")
                     .platformName("Windows 11")
                     .build(), scenario);
-            PagesFactory.start(driver);
+            PagesFactory.start(edgedriver);
                 // @formatter:off
-            driver = DriverFactory.getDriverInstance(builder
+            chromedriver = DriverFactory.getDriverInstance(builder
                     .browser(Browser.CHROME)
                     .browserVersion("latest")
                     .platformName("Windows 11")
                     .build(), scenario);
-            PagesFactory.start(driver);
+            PagesFactory.start(chromedriver);
         });
 
         After((Scenario scenario) -> {
@@ -46,11 +47,18 @@ public class StartingSteps extends DriverFactory implements En
             stopDate = new Date();
             System.out.println("Completed " + stopDate + ","+ (stopDate.getTime() - startDate.getTime()) / 1000L + " seconds.");
 
-            if (driver == null)
+            if (chromedriver == null && edgedriver == null)
             {
                 return;
             }
-            driver.quit();
+            if(chromedriver != null)
+            {
+                chromedriver.quit();
+            }
+            if(edgedriver != null)
+            {
+                edgedriver.quit();
+            }
         });
 
     }

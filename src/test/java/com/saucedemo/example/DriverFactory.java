@@ -30,6 +30,10 @@ import java.util.concurrent.TimeUnit;
 public class DriverFactory implements En
 {
 
+    public static final String C_WEB_DRIVERS_CHROMEDRIVER_WIN_64_CHROMEDRIVER_EXE = "C:\\webDrivers\\chromedriver-win64\\chromedriver.exe";
+    public static final String C_EDGEDRIVER_WIN_64_MSEDGEDRIVER_EXE = "C:\\webDrivers\\edgedriver_win64\\msedgedriver.exe";
+    public static final String URL = "https://saucedemo.com";
+
     public static RemoteWebDriver getDriverInstance(TestPlatform tp, Scenario scenario)
     {
 
@@ -60,17 +64,17 @@ public class DriverFactory implements En
                     chromeOptions.setCapability("goog:chromeOptions", googOpts);
                     chromeOptions.merge(caps);
 
-                    System.setProperty("webdriver.chrome.driver", "C:\\webDrivers\\chromedriver-win64\\chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver", C_WEB_DRIVERS_CHROMEDRIVER_WIN_64_CHROMEDRIVER_EXE);
                     driver = new ChromeDriver(chromeOptions);
-                    driver.get("https://saucedemo.com");
+                    driver.get(URL);
                     break;
 
                 case EDGE:
                     EdgeOptions edgeOptions = new EdgeOptions();
                     edgeOptions.merge(caps);
-                    System.setProperty("webdriver.edge.driver", "C:\\webDrivers\\edgedriver_win64\\msedgedriver.exe");
+                    System.setProperty("webdriver.edge.driver", C_EDGEDRIVER_WIN_64_MSEDGEDRIVER_EXE);
                     driver = new EdgeDriver(edgeOptions);
-                    driver.get("https://saucedemo.com");
+                    driver.get(URL);
                     break;
                 default:
                     throw new RuntimeException("Unsupported browserName: " + tp.getBrowser());

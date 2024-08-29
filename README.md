@@ -1,4 +1,4 @@
-# Sauce Demo Tests
+# Sauce Demo Tests 
 ## Objective
 To create an automated test that achieves the following flow:
 1. Navigate to https://www.saucedemo.com/
